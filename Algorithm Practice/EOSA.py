@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -9,6 +10,9 @@ from sklearn.metrics import accuracy_score
 np.random.seed(42)
 X, y = make_classification(n_samples=200, n_features=20, n_informative=5, random_state=42)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+df = pd.DataFrame(X, columns=[f'Feature_{i+1}' for i in range(X.shape[1])])
+
 
 # Step 2: Fitness function (evaluate subsets of features)
 def fitness_function(selected_features):
